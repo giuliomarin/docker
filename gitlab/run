@@ -1,0 +1,9 @@
+docker run --detach \
+    --hostname gitlab.giuliomarin.com \
+    --publish 443:443 --publish 10080:80 --publish 10022:22 \
+    --name gitlab \
+    --restart always \
+    --volume /Data/4_docker/gitlab/config:/etc/gitlab \
+    --volume /Data/4_docker/gitlab/logs:/var/log/gitlab \
+    --volume /Data/4_docker/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest
