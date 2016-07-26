@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Delete all containers that exited
+docker rm $(docker ps -a | grep Exited | awk '{print $1}')

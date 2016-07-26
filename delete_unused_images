@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Delete all images without a valid tag
+docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
