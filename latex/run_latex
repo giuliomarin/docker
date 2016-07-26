@@ -1,1 +1,1 @@
-docker run --rm -e USER=$USER  -e USERID=$UID -v $(pwd):/home docker-latex bash -c "pdflatex $@"
+docker run --rm -e USER=$USER -e USERID=$UID -v $(pwd):/latex/source docker-latex bash -c "pdflatex $@"
