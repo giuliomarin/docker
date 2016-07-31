@@ -1,1 +1,1 @@
-docker run --rm -e USER=$USER -e USERID=$UID -v $(pwd):/latex/source docker-latex bash -c "biblatex $@"
+docker run --rm -e USER=$USER -e USERID=$UID -v "$(pwd)":/latex/source docker-latex bash -c "mybiblatex $@"

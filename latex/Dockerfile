@@ -5,7 +5,7 @@ MAINTAINER Giulio Marin
 RUN apt-get update -q
 RUN apt-get install -qy texlive-full
 
-# Create script to run application with xvfb
+# Compile files with bibliography
 RUN echo \
   'pdflatex --output-directory=/latex/tmp "$1";\
   echo ---------------------;\
@@ -19,8 +19,15 @@ RUN echo \
   echo ---------------------;\
   pdflatex --output-directory=/latex/tmp "$1";\
   cp /latex/tmp/"$1".pdf /latex/source/'\
-  > /bin/biblatex
-RUN chmod 777 /bin/biblatex
+  > /bin/mybiblatex
+RUN chmod 777 /bin/mybiblatex
+
+# Compile without bibliography
+RUN echo \
+  'pdflatex --output-directory=/latex/tmp "$1";\
+  cp /latex/tmp/"$1".pdf /latex/source/'\
+  > /bin/mypdflatex
+RUN chmod 777 /bin/mypdflatex
 
 RUN mkdir -p /latex/tmp
 
