@@ -1,11 +1,14 @@
 # Start apache server on directory specified as argument.
 # Use current directory by default.
 
+port=8080
+
 if [ "$1" == "" ]; then SERVER_DIR=`pwd`; else SERVER_DIR=$1; fi
 echo "Server location: $SERVER_DIR"
+echo "Address: `hostname`:${port}"
 
 docker run -td  \
--p 8080:80 \
+-p ${port}:80 \
 --restart always \
 --name http \
 -v $SERVER_DIR:/usr/local/apache2/htdocs/ \
