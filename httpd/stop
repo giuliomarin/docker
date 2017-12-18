@@ -1,2 +1,7 @@
 # Stop and remove container
-docker rm -f http
+if [ "$1" == "" ]; then
+  toremove=`docker ps -a | grep "http-" | awk '{print $1}'`
+else
+  toremove=`docker ps -a | grep "http-$1" | awk '{print $1}'`
+fi
+docker rm -f ${toremove}

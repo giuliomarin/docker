@@ -1,7 +1,13 @@
 # Start apache server on directory specified as argument.
 # Use current directory by default.
 
-port=8080
+# Find first available port
+for port in `seq 8080 8090`; do
+echo "Testing port: ${port}"
+echo test | nc localhost ${port} > /dev/null;
+if [ "$?" == "1" ]; then break; fi
+done
+echo "Using port ${port}"
 
 if [ "$1" == "" ]; then SERVER_DIR=`pwd`; else SERVER_DIR=$1; fi
 echo "Server location: $SERVER_DIR"
@@ -10,6 +16,6 @@ echo "Address: `hostname`:${port}"
 docker run -td  \
 -p ${port}:80 \
 --restart always \
---name http \
+--name http-${port} \
 -v $SERVER_DIR:/usr/local/apache2/htdocs/ \
 httpd:2.4
