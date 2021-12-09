@@ -1,0 +1,5 @@
+#!/bin/bash
+CURRDIR=$(pwd)
+cd "$(dirname "$0")"
+docker build -t gm:jenkins .
+cd $CURRDIR
